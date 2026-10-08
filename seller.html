@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drypops Seller Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --accent:#C9973A; --accent-dark:#8B6914; --bg:#F6F3EC; --card:#ffffff; --text:#241F14; --sub:#7A7365; --border:#EAE3D3; --danger:#C0392B;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#15130F; --card:#211D16; --text:#F3EFE6; --sub:#A69E8A; --border:#332C20; } }
+:root[data-theme="dark"]{ --bg:#15130F; --card:#211D16; --text:#F3EFE6; --sub:#A69E8A; --border:#332C20; }
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); display:flex; justify-content:center; padding-top:env(safe-area-inset-top,0px);}
+.app{ width:100%; max-width:420px; min-height:100%; display:flex; flex-direction:column; }
+header.top{ padding:16px 16px 10px; display:flex; justify-content:space-between; align-items:center;}
+header.top h1{ color:var(--accent); font-size:1.4rem; letter-spacing:.5px; font-weight:800;}
+main{ flex:1; padding:0 14px 90px; }
+.card{ background:var(--card); border-radius:16px; padding:16px; margin-bottom:14px; box-shadow:0 2px 8px rgba(36,31,20,.06); border:1px solid var(--border);}
+.card h2{ font-size:1rem; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;}
+.stat-row{ display:flex; justify-content:space-around; text-align:center;}
+.stat-row div b{ display:block; font-size:1.3rem; color:var(--accent-dark);}
+.stat-row div small{ color:var(--sub); font-size:.78rem;}
+.empty{ color:var(--sub); font-size:.85rem; text-align:center; padding:18px 0;}
+.btn{ background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 14px; font-size:.9rem; font-weight:600; cursor:pointer;}
+.btn:disabled{ opacity:.6; cursor:wait;}
+.btn.secondary{ background:var(--border); color:var(--text);}
+.btn.small{ padding:6px 10px; font-size:.8rem; border-radius:8px;}
+.btn.danger{ background:var(--danger);}
+.row-flex{ display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+input,select,textarea{
+  width:100%; padding:10px; border:1px solid var(--border); border-radius:10px; font-size:.9rem;
+  background:var(--card); color:var(--text); margin-bottom:10px; font-family:inherit;
+}
+.order{ padding:12px 0; border-bottom:1px solid var(--border);}
+.order:last-child{ border-bottom:none;}
+.order .head{ display:flex; justify-content:space-between; font-size:.92rem; font-weight:700; gap:8px;}
+.order .meta{ color:var(--sub); font-size:.8rem; margin-top:2px; line-height:1.45;}
+.order .items{ font-size:.82rem; margin-top:6px; padding-left:16px;}
+.order a{ color:var(--accent-dark); font-weight:600; text-decoration:none;}
+.status{ display:inline-block; padding:3px 9px; border-radius:20px; font-size:.72rem; font-weight:700; margin-top:6px;}
+.status.to_process{ background:#FCEBC9; color:#8B6914;}
+.status.shipping{ background:#DCE7F5; color:#2C4A6E;}
+.status.completed{ background:#DFF0E2; color:#2E6B3E;}
+.badge-new{ background:var(--danger); color:#fff; border-radius:20px; font-size:.65rem; padding:2px 7px; margin-left:6px; font-weight:700;}
+select.status-select{ margin-bottom:0; width:auto; padding:6px 8px; font-size:.8rem;}
+.msg-item{ padding:12px 0; border-bottom:1px solid var(--border);}
+.msg-item b{ font-size:.9rem;} .msg-item p{ color:var(--sub); font-size:.85rem; margin-top:2px; white-space:pre-wrap;}
+.settings-list .row{ display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border); font-size:.92rem;}
+.settings-list .row:last-child{ border-bottom:none;}
+.page{ display:none; } .page.active{ display:block; }
+nav.bottom{ position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:420px; background:var(--card); border-top:1px solid var(--border); display:flex; padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));}
+nav.bottom button{ flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:3px; font-size:.68rem; color:var(--sub); cursor:pointer; font-family:inherit;}
+nav.bottom button.active{ color:var(--accent-dark); font-weight:700;}
+.note{ font-size:.75rem; color:var(--sub); padding:0 0 10px;}
+.modal-bg{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:flex-end; justify-content:center; z-index:10;}
+.modal-bg.active{ display:flex; }
+.modal{ background:var(--card); width:100%; max-width:420px; border-radius:20px 20px 0 0; padding:20px; max-height:85vh; overflow-y:auto;}
+.modal h3{ margin-bottom:14px; }
+.profile-badge{ width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent-dark)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:1.2rem; flex-shrink:0;}
+.profile-head{ display:flex; align-items:center; gap:14px; margin-bottom:4px;}
+.login{ width:100%; max-width:420px; padding:60px 20px; margin:auto;}
+.login h1{ color:var(--accent); text-align:center; margin-bottom:6px;}
+.login p.sub{ text-align:center; color:var(--sub); font-size:.85rem; margin-bottom:24px;}
+.err{ color:var(--danger); font-size:.85rem; margin-bottom:10px; min-height:1.1em;}
+.conn{ font-size:.7rem; color:var(--sub);}
+.conn.ok::before{ content:"● "; color:#2E6B3E;} .conn.bad::before{ content:"● "; color:var(--danger);}
+.hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<!-- SETUP WARNING (shown only if keys are missing) -->
+<div class="login hidden" id="setup-screen">
+  <h1>Setup needed</h1>
+  <p class="sub">Open <b>seller.html</b> in a text editor and paste your Supabase URL and anon key at the top of the script (see SETUP.md).</p>
+</div>
+
+<!-- LOGIN -->
+<div class="login hidden" id="login-screen">
+  <h1>DRYPOPS</h1>
+  <p class="sub">Seller Center — owner login</p>
+  <form onsubmit="doLogin(event)">
+    <input id="login-email" type="email" placeholder="Email" autocomplete="username" required>
+    <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+    <div class="err" id="login-err"></div>
+    <button class="btn" style="width:100%;" id="login-btn" type="submit">Log in</button>
+  </form>
+</div>
+
+<!-- DASHBOARD -->
+<div class="app hidden" id="app">
+
+  <div class="page active" id="page-home">
+    <header class="top"><h1 id="home-shop-title">Drypops</h1><span class="conn" id="conn">connecting…</span></header>
+    <main>
+      <div class="card">
+        <h2>Orders</h2>
+        <div class="stat-row" id="home-order-stats"></div>
+      </div>
+      <div class="card">
+        <h2>Income (from completed orders)</h2>
+        <div class="stat-row" id="home-income-stats"></div>
+      </div>
+      <div class="card">
+        <h2>Pending value (not completed yet)</h2>
+        <div class="stat-row" id="home-pending-stats"></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="page" id="page-orders">
+    <header class="top"><h1 style="color:var(--text); font-size:1.25rem;">Orders</h1><button class="btn small" onclick="openOrderModal()">+ Add</button></header>
+    <main>
+      <select id="order-filter" onchange="renderOrders()">
+        <option value="all">All orders</option>
+        <option value="to_process">To Process</option>
+        <option value="shipping">Shipping</option>
+        <option value="completed">Completed</option>
+      </select>
+      <div class="card"><div id="orders-list"></div></div>
+    </main>
+  </div>
+
+  <div class="page" id="page-messages">
+    <header class="top"><h1 style="color:var(--text); font-size:1.25rem;">Notes</h1><button class="btn small" onclick="openMessageModal()">+ Add</button></header>
+    <main>
+      <p class="note">Private notes, synced across your devices. Customer chats still happen on WhatsApp.</p>
+      <div class="card"><div id="messages-list"></div></div>
+    </main>
+  </div>
+
+  <div class="page" id="page-me">
+    <main style="padding-top:16px;">
+      <div class="card">
+        <div class="profile-head">
+          <div class="profile-badge" id="profile-badge">DP</div>
+          <div id="profile-view"></div>
+        </div>
+        <button class="btn secondary small" style="margin-top:10px;" onclick="openProfileModal()">Edit</button>
+      </div>
+      <div class="card settings-list">
+        <div class="row"><span>Signed in as</span><span style="color:var(--sub); font-size:.8rem;" id="me-email"></span></div>
+        <div class="row" style="border-bottom:none;">
+          <span>Log out</span>
+          <button class="btn secondary small" onclick="doLogout()">Log out</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom">
+    <button class="active" onclick="go('home',this)">🏠<br>Home</button>
+    <button onclick="go('orders',this)">📄<br>Orders<span class="badge-new hidden" id="new-badge"></span></button>
+    <button onclick="go('messages',this)">💬<br>Notes</button>
+    <button onclick="go('me',this)">👤<br>Me</button>
+  </nav>
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal-body"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ================= PASTE YOUR SUPABASE DETAILS HERE ================= */
+const SUPABASE_URL  = 'https://isjcywsbryqntlrnuquv.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_IvWvD8IZi0yuc4Vs5oa89g_CadyM5Sq';
+/* ===================================================================== */
+
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => 'Rs ' + Number(n || 0).toLocaleString();
+const STATUS_LABEL = { to_process:'To Process', shipping:'Shipping', completed:'Completed' };
+
+if (!SUPABASE_URL.startsWith('https://') || SUPABASE_ANON.startsWith('PASTE')) {
+  $('setup-screen').classList.remove('hidden');
+  throw new Error('Supabase keys not set');
+}
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let orders = [], notes = [], unseen = 0;
+
+/* ---------- local profile (shop details only) ---------- */
+const PKEY = 'drypops_profile_v2';
+function loadProfile(){
+  const d = { shopName:'DRYPOPS', ownerName:'MUHAMMAD FARRUKH AND SONS', phone:'03282288801', since:new Date().toISOString().slice(0,10) };
+  try { return Object.assign(d, JSON.parse(localStorage.getItem(PKEY)) || {}); } catch(e){ return d; }
+}
+let profile = loadProfile();
+function saveProfileLocal(){ try{ localStorage.setItem(PKEY, JSON.stringify(profile)); }catch(e){} }
+
+/* ---------- auth ---------- */
+async function init(){
+  const { data:{ session } } = await sb.auth.getSession();
+  session ? showApp(session) : showLogin();
+  sb.auth.onAuthStateChange((_e, s) => { s ? showApp(s) : showLogin(); });
+}
+function showLogin(){
+  $('app').classList.add('hidden'); $('login-screen').classList.remove('hidden');
+  stopRealtime();
+}
+let appShown = false;
+async function showApp(session){
+  if (appShown) return; appShown = true;
+  $('login-screen').classList.add('hidden'); $('app').classList.remove('hidden');
+  $('me-email').textContent = session.user.email;
+  renderProfile();
+  await refreshAll();
+  startRealtime();
+}
+async function doLogin(e){
+  e.preventDefault();
+  const btn = $('login-btn'); btn.disabled = true; $('login-err').textContent = '';
+  const { error } = await sb.auth.signInWithPassword({ email:$('login-email').value.trim(), password:$('login-pass').value });
+  btn.disabled = false;
+  if (error) $('login-err').textContent = 'Login failed: ' + error.message;
+}
+async function doLogout(){ appShown = false; await sb.auth.signOut(); }
+
+/* ---------- data ---------- */
+async function refreshAll(){
+  const [o, n] = await Promise.all([
+    sb.from('orders').select('*').order('created_at', { ascending:false }),
+    sb.from('notes').select('*').order('created_at', { ascending:false })
+  ]);
+  if (o.error || n.error) { setConn(false); alert('Could not load data: ' + (o.error || n.error).message); return; }
+  orders = o.data; notes = n.data;
+  renderAll();
+}
+let channel = null;
+function startRealtime(){
+  stopRealtime();
+  channel = sb.channel('drypops-live')
+    .on('postgres_changes', { event:'*', schema:'public', table:'orders' }, p => {
+      if (p.eventType === 'INSERT') {
+        orders.unshift(p.new); unseen++; updateBadge();
+        try { navigator.vibrate && navigator.vibrate(200); } catch(e){}
+      } else if (p.eventType === 'UPDATE') {
+        orders = orders.map(x => x.id === p.new.id ? p.new : x);
+      } else if (p.eventType === 'DELETE') {
+        orders = orders.filter(x => x.id !== p.old.id);
+      }
+      renderOrders(); renderHome();
+    })
+    .on('postgres_changes', { event:'*', schema:'public', table:'notes' }, () => refreshAll())
+    .subscribe(s => setConn(s === 'SUBSCRIBED'));
+}
+function stopRealtime(){ if (channel) { sb.removeChannel(channel); channel = null; } }
+function setConn(ok){ const c = $('conn'); c.textContent = ok ? 'live' : 'offline'; c.className = 'conn ' + (ok ? 'ok' : 'bad'); }
+function updateBadge(){ const b = $('new-badge'); b.textContent = unseen; b.classList.toggle('hidden', unseen === 0); }
+
+/* ---------- navigation / modal ---------- */
+function go(name, btn){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  $('page-' + name).classList.add('active');
+  document.querySelectorAll('nav.bottom button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (name === 'orders') { unseen = 0; updateBadge(); }
+  window.scrollTo(0, 0);
+}
+function closeModal(){ $('modal-bg').classList.remove('active'); $('modal-body').innerHTML = ''; }
+function openModal(html){ $('modal-body').innerHTML = html; $('modal-bg').classList.add('active'); }
+
+/* ---------- orders ---------- */
+function waLink(phone){
+  let p = String(phone).replace(/[^\d+]/g, '');
+  if (p.startsWith('+')) p = p.slice(1); else if (p.startsWith('0')) p = '92' + p.slice(1);
+  return 'https://wa.me/' + p;
+}
+function renderOrders(){
+  const f = $('order-filter').value;
+  const list = orders.filter(o => f === 'all' || o.status === f);
+  const el = $('orders-list');
+  if (!list.length) { el.innerHTML = '<div class="empty">No orders here yet. New store orders appear automatically.</div>'; return; }
+  el.innerHTML = list.map(o => {
+    const items = Array.isArray(o.items) ? o.items : [];
+    return `
+    <div class="order">
+      <div class="head"><span>${esc(o.name)} <small style="color:var(--sub);font-weight:500;">#${esc(o.ref)}</small></span><span>${money(o.amount)}</span></div>
+      <div class="meta">${new Date(o.created_at).toLocaleString()} · ${o.payment_method === 'WALLET' ? 'JazzCash/Easypaisa' : 'COD'}</div>
+      <div class="meta">📞 <a href="tel:${esc(o.phone)}">${esc(o.phone)}</a> · <a href="${esc(waLink(o.phone))}" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="meta">📍 ${esc(o.address)}, ${esc(o.city)}</div>
+      ${items.length ? `<ul class="items">${items.map(i => `<li>${esc(i.title)} × ${esc(i.quantity)}${i.details ? ' <span style="color:var(--sub)">(' + esc(i.details.join(', ')) + ')</span>' : ''}</li>`).join('')}</ul>` : ''}
+      <span class="status ${esc(o.status)}">${STATUS_LABEL[o.status] || esc(o.status)}</span>
+      <div class="row-flex" style="margin-top:8px;">
+        <select class="status-select" data-id="${esc(o.id)}" onchange="updateStatus(this.dataset.id, this.value)">
+          ${Object.keys(STATUS_LABEL).map(k => `<option value="${k}" ${o.status === k ? 'selected' : ''}>${STATUS_LABEL[k]}</option>`).join('')}
+        </select>
+        <button class="btn small danger" data-id="${esc(o.id)}" onclick="deleteOrder(this.dataset.id)">Del</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+async function updateStatus(id, status){
+  const { error } = await sb.from('orders').update({ status }).eq('id', id);
+  if (error) { alert('Could not update: ' + error.message); return refreshAll(); }
+  const o = orders.find(x => x.id === id); if (o) o.status = status;
+  renderOrders(); renderHome();
+}
+async function deleteOrder(id){
+  if (!confirm('Delete this order?')) return;
+  const { error } = await sb.from('orders').delete().eq('id', id);
+  if (error) return alert('Could not delete: ' + error.message);
+  orders = orders.filter(x => x.id !== id); renderOrders(); renderHome();
+}
+function openOrderModal(){
+  openModal(`
+    <h3>Add Order (manual)</h3>
+    <input id="of-customer" placeholder="Customer name">
+    <input id="of-phone" placeholder="Phone (03XXXXXXXXX)" inputmode="tel">
+    <input id="of-address" placeholder="Address">
+    <input id="of-city" placeholder="City">
+    <input id="of-total" type="number" min="0" placeholder="Order total (Rs)">
+    <select id="of-status">
+      <option value="to_process">To Process</option>
+      <option value="shipping">Shipping</option>
+      <option value="completed">Completed</option>
+    </select>
+    <div class="row-flex">
+      <button class="btn" onclick="saveOrder()">Save</button>
+      <button class="btn secondary" onclick="closeModal()">Cancel</button>
+    </div>`);
+}
+async function saveOrder(){
+  const v = id => $(id).value.trim();
+  const total = Math.round(parseFloat(v('of-total')));
+  if (!v('of-customer') || !v('of-phone') || !v('of-address') || !v('of-city') || isNaN(total) || total < 0) { alert('Fill all fields correctly.'); return; }
+  const row = {
+    ref: 'M-' + Date.now().toString().slice(-7), name: v('of-customer'), phone: v('of-phone'),
+    address: v('of-address'), city: v('of-city'), payment_method: 'COD',
+    subtotal: total, discount: 0, shipping: 0, amount: total, items: [], status: $('of-status').value
+  };
+  const { error } = await sb.from('orders').insert(row);
+  if (error) return alert('Could not save: ' + error.message);
+  closeModal(); refreshAll();
+}
+
+/* ---------- notes ---------- */
+function openMessageModal(){
+  openModal(`
+    <h3>Add Note</h3>
+    <input id="mf-name" placeholder="About (e.g. customer name)">
+    <textarea id="mf-text" rows="3" placeholder="Note"></textarea>
+    <div class="row-flex">
+      <button class="btn" onclick="saveMessage()">Save</button>
+      <button class="btn secondary" onclick="closeModal()">Cancel</button>
+    </div>`);
+}
+async function saveMessage(){
+  const author = $('mf-name').value.trim(), body = $('mf-text').value.trim();
+  if (!author || !body) { alert('Fill both fields.'); return; }
+  const { error } = await sb.from('notes').insert({ author, body });
+  if (error) return alert('Could not save: ' + error.message);
+  closeModal(); refreshAll();
+}
+async function deleteMessage(id){
+  const { error } = await sb.from('notes').delete().eq('id', id);
+  if (error) return alert('Could not delete: ' + error.message);
+  refreshAll();
+}
+function renderMessages(){
+  const el = $('messages-list');
+  if (!notes.length) { el.innerHTML = '<div class="empty">No notes yet.</div>'; return; }
+  el.innerHTML = notes.map(m => `
+    <div class="msg-item"><b>${esc(m.author)}</b> <span style="color:var(--sub); font-size:.75rem;">· ${new Date(m.created_at).toLocaleString()}</span><p>${esc(m.body)}</p>
+    <button class="btn small danger" style="margin-top:6px;" data-id="${esc(m.id)}" onclick="deleteMessage(this.dataset.id)">Del</button></div>`).join('');
+}
+
+/* ---------- profile ---------- */
+function openProfileModal(){
+  openModal(`
+    <h3>Edit Shop Profile</h3>
+    <input id="pr-shop" placeholder="Shop name" value="${esc(profile.shopName)}">
+    <input id="pr-name" placeholder="Owner name" value="${esc(profile.ownerName)}">
+    <input id="pr-phone" placeholder="Phone number" value="${esc(profile.phone)}">
+    <div class="row-flex">
+      <button class="btn" onclick="saveProfile()">Save</button>
+      <button class="btn secondary" onclick="closeModal()">Cancel</button>
+    </div>`);
+}
+function saveProfile(){
+  profile.shopName = $('pr-shop').value.trim();
+  profile.ownerName = $('pr-name').value.trim();
+  profile.phone = $('pr-phone').value.trim();
+  saveProfileLocal(); closeModal(); renderProfile();
+}
+function renderProfile(){
+  const p = profile;
+  $('home-shop-title').textContent = p.shopName || 'Drypops';
+  $('profile-badge').textContent = (p.shopName || 'DP').slice(0, 2).toUpperCase();
+  $('profile-view').innerHTML = `
+    <b>${esc(p.shopName) || '(No shop name set)'}</b><br>
+    <span style="color:var(--sub); font-size:.85rem;">${esc(p.ownerName) || 'Owner name not set'}</span><br>
+    <span style="color:var(--sub); font-size:.85rem;">📞 ${esc(p.phone) || '—'}</span><br>
+    <span style="color:var(--sub); font-size:.8rem;">Since: ${esc(p.since)}</span>`;
+}
+
+/* ---------- home ---------- */
+function renderHome(){
+  const c = { to_process:0, shipping:0, completed:0 };
+  orders.forEach(o => { if (c[o.status] !== undefined) c[o.status]++; });
+  $('home-order-stats').innerHTML = `
+    <div><b>${c.to_process}</b><small>To Process</small></div>
+    <div><b>${c.shipping}</b><small>Shipping</small></div>
+    <div><b>${c.completed}</b><small>Completed</small></div>`;
+  const income = orders.filter(o => o.status === 'completed').reduce((s, o) => s + Number(o.amount), 0);
+  const pending = orders.filter(o => o.status !== 'completed').reduce((s, o) => s + Number(o.amount), 0);
+  $('home-income-stats').innerHTML = `<div><b>${money(income)}</b><small>Total Income</small></div>`;
+  $('home-pending-stats').innerHTML = `<div><b>${money(pending)}</b><small>Awaiting delivery / payment</small></div>`;
+}
+function renderAll(){ renderHome(); renderOrders(); renderMessages(); renderProfile(); }
+
+init();
+</script>
+</body>
+</html>
