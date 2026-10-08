@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DryPops - Organic Dry Fruits, Oils, Honey & Seeds</title>
+    <meta name="description" content="Order organic dry fruits, cold-pressed oils, raw Sidr honey and healthy seeds in 50g, 100g and 200g packs. Delivery across Pakistan.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <script>try{if(localStorage.getItem('drypops-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- External Custom CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        deepBrown: '#2C1810',      /* Navbar & Footer Deep Brown */
+                        deepBrownDark: '#1E100B',  /* Darker Shade for Bar/Footer Top */
+                        cream: '#FAF6F0',          /* Hero & Card Background Cream */
+                        creamLight: '#FBF9F5',     /* Page Soft Background */
+                        olive: '#556B2F',          /* Primary Button Olive Green */
+                        oliveHover: '#435525',     /* Button Hover State */
+                        goldenHoney: '#D4AF37',    /* Prices & Accent Highlights */
+                        goldenLight: '#F3E5AB',    /* Light Golden Accent */
+                        darkText: '#2B1E16'        /* Replaces Pure Black for Regular Text */
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(25px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(1deg)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(212, 175, 55, 0.2)' },
+                            '50%': { boxShadow: '0 0 25px rgba(212, 175, 55, 0.6)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        bounceSoft: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' }
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        float: 'float 5s ease-in-out infinite',
+                        pulseGlow: 'pulseGlow 3s infinite',
+                        shimmer: 'shimmer 2.5s infinite linear',
+                        bounceSoft: 'bounceSoft 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-creamLight dark:bg-slate-900 text-darkText dark:text-cream font-sans antialiased flex flex-col min-h-screen transition-colors duration-300 relative overflow-x-hidden">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-deepBrownDark text-goldenLight text-xs sm:text-sm py-2.5 px-4 border-b border-goldenHoney/30">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center"><i class="fa-solid fa-truck-fast text-goldenHoney mr-1.5"></i> Free Delivery Across Pakistan on Orders Over Rs. 2,000</span>
+                <span class="hidden md:inline-flex items-center bg-goldenHoney/10 px-2.5 py-0.5 rounded-full border border-goldenHoney/20">
+                    <i class="fa-solid fa-ticket text-goldenHoney mr-1.5"></i> Use code <strong class="text-white font-mono mx-1.5">ORGANIC10</strong> for 10% off
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 ml-auto">
+                <a href="tel:03282288801" class="hover:text-goldenHoney transition-colors flex items-center gap-1.5 font-medium">
+                    <i class="fa-solid fa-phone text-goldenHoney"></i> 03282288801
+                </a>
+                <span class="text-goldenHoney/40">|</span>
+                <a href="https://wa.me/923282288801?text=Hi%20DryPops!" target="_blank" rel="noopener" class="hover:text-goldenHoney transition-colors flex items-center gap-1.5 font-medium">
+                    <i class="fa-brands fa-whatsapp text-goldenHoney text-base"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar (Deep Brown) -->
+    <header class="sticky top-0 z-40 bg-deepBrown/95 backdrop-blur-md text-cream shadow-xl border-b border-goldenHoney/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" onclick="showView('home'); return false;" class="flex items-center gap-2.5 sm:gap-3 group" aria-label="DryPops home">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-goldenHoney text-deepBrown flex items-center justify-center text-lg sm:text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg sm:text-2xl font-black tracking-wider text-goldenHoney block leading-none uppercase group-hover:text-amber-300 transition-colors">DRYPOPS</span>
+                        <span class="text-[10px] uppercase tracking-widest text-cream/80 font-bold block mt-0.5">Organic & Pure</span>
+                    </div>
+                </a>
+
+                <!-- Core Navigation Links (desktop) -->
+                <nav class="hidden md:flex items-center space-x-8 font-bold text-cream/90 text-sm" aria-label="Main">
+                    <a href="#" onclick="showView('home'); return false;" class="hover:text-goldenHoney transition-all duration-200 flex items-center gap-1.5"><i class="fa-solid fa-house text-goldenHoney/70"></i> Home</a>
+                    <a href="#dynamicProductsContainer" onclick="filterCategory('all'); return false;" class="hover:text-goldenHoney transition-all duration-200 flex items-center gap-1.5"><i class="fa-solid fa-store text-goldenHoney/70"></i> Shop</a>
+                    <a href="#about-us" onclick="goToSection('about-us'); return false;" class="hover:text-goldenHoney transition-all duration-200 flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-goldenHoney/70"></i> About Us</a>
+                    <a href="#contact-us" onclick="goToSection('contact-us'); return false;" class="hover:text-goldenHoney transition-all duration-200 flex items-center gap-1.5"><i class="fa-solid fa-envelope text-goldenHoney/70"></i> Contact Us</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-1.5 sm:space-x-3">
+                    <button onclick="toggleSearchModal()" aria-label="Search products" class="p-2 sm:p-2.5 rounded-xl bg-deepBrownDark text-goldenHoney hover:bg-goldenHoney hover:text-deepBrown transition-all duration-200 active:scale-95">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="hidden sm:block p-2.5 rounded-xl bg-deepBrownDark text-goldenHoney hover:bg-goldenHoney hover:text-deepBrown transition-all duration-200 active:scale-95">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+
+                    <button onclick="showWishlistToast()" aria-label="View wishlist" class="relative p-2 sm:p-2.5 rounded-xl bg-deepBrownDark text-goldenHoney hover:bg-goldenHoney hover:text-deepBrown transition-all duration-200 active:scale-95">
+                        <i class="fa-solid fa-heart"></i>
+                        <span id="wishlistCount" class="absolute -top-1.5 -right-1.5 bg-goldenHoney text-deepBrown text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-deepBrown transition-transform duration-300">0</span>
+                    </button>
+
+                    <button onclick="toggleCart()" aria-label="Open cart" class="relative p-2 sm:p-2.5 rounded-xl bg-goldenHoney text-deepBrown hover:bg-amber-400 transition-all duration-200 active:scale-95 shadow-md">
+                        <i class="fa-solid fa-basket-shopping text-lg"></i>
+                        <span id="cartCount" class="absolute -top-1.5 -right-1.5 bg-olive text-white text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-deepBrown transition-transform duration-300">0</span>
+                    </button>
+
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden p-2 rounded-xl bg-deepBrownDark text-goldenHoney hover:bg-goldenHoney hover:text-deepBrown transition-all duration-200 active:scale-95">
+                        <i id="mobileMenuIcon" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-deepBrownDark border-t border-goldenHoney/20">
+            <nav class="max-w-7xl mx-auto px-4 py-2 flex flex-col text-sm font-bold text-cream/90" aria-label="Mobile">
+                <a href="#" onclick="showView('home'); closeMobileMenu(); return false;" class="py-3 border-b border-goldenHoney/10 flex items-center gap-2"><i class="fa-solid fa-house text-goldenHoney/70 w-5"></i> Home</a>
+                <a href="#dynamicProductsContainer" onclick="filterCategory('all'); return false;" class="py-3 border-b border-goldenHoney/10 flex items-center gap-2"><i class="fa-solid fa-store text-goldenHoney/70 w-5"></i> Shop</a>
+                <a href="#about-us" onclick="goToSection('about-us'); return false;" class="py-3 border-b border-goldenHoney/10 flex items-center gap-2"><i class="fa-solid fa-circle-info text-goldenHoney/70 w-5"></i> About Us</a>
+                <a href="#contact-us" onclick="goToSection('contact-us'); return false;" class="py-3 border-b border-goldenHoney/10 flex items-center gap-2"><i class="fa-solid fa-envelope text-goldenHoney/70 w-5"></i> Contact Us</a>
+                <button type="button" onclick="toggleDarkMode()" class="py-3 flex items-center gap-2 text-left"><i class="fa-solid fa-circle-half-stroke text-goldenHoney/70 w-5"></i> Dark / Light mode</button>
+            </nav>
+        </div>
+
+        <!-- Sub-Header Navigation -->
+        <div class="bg-deepBrownDark/90 border-t border-goldenHoney/20 py-2.5">
+            <div class="max-w-7xl mx-auto px-4 flex items-center justify-between overflow-x-auto space-x-6 text-xs font-semibold text-cream/80 whitespace-nowrap scrollbar-none">
+                <div class="flex items-center space-x-6">
+                    <a href="#dry-fruits" onclick="filterCategory('Dry Fruits'); return false;" class="hover:text-goldenHoney transition-colors inline-block">Dry Fruits</a>
+                    <a href="#oils" onclick="filterCategory('Oils'); return false;" class="hover:text-goldenHoney transition-colors inline-block">Oils</a>
+                    <a href="#honey" onclick="filterCategory('Honey'); return false;" class="hover:text-goldenHoney transition-colors inline-block">Honey</a>
+                    <a href="#seeds" onclick="filterCategory('Seeds'); return false;" class="hover:text-goldenHoney transition-colors inline-block">Seeds</a>
+                    <a href="#box-builder" onclick="goToSection('box-builder'); return false;" class="text-goldenHoney font-bold flex items-center gap-1"><i class="fa-solid fa-gift"></i> Gift Box Builder</a>
+                    <a href="#quiz" onclick="goToSection('quiz'); return false;" class="hover:text-goldenHoney transition-colors flex items-center gap-1"><i class="fa-solid fa-wand-magic-sparkles text-goldenHoney"></i> Find Your Mix</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="mainViewContainer" class="flex-grow">
+        
+        <!-- HOME PAGE -->
+        <div id="view-home" class="page-view">
+            <!-- Cream Hero Section -->
+            <section class="relative overflow-hidden bg-cream dark:bg-slate-900 py-16 sm:py-20 border-b border-amber-900/10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-goldenLight/60 border border-goldenHoney text-deepBrown text-xs font-bold mb-5 shadow-sm pulse-badge">
+                                <i class="fa-solid fa-circle-check text-olive mr-1.5"></i> 100% Organic & Lab Tested
+                            </span>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-deepBrown dark:text-cream leading-tight">
+                                Fresh Dry Fruits, <span class="text-olive italic underline decoration-goldenHoney/40 decoration-wavy">Pure Oils</span>, Honey & Healthy Seeds
+                            </h1>
+                            <p class="text-darkText/80 dark:text-slate-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 mt-5 leading-relaxed">
+                                Discover Pakistan's finest organic selection with custom weight options (50g, 100g, 200g). Handpicked almonds, pistachios, pure cold-pressed botanical oils, raw Sidr honey, and nutrient-dense seeds.
+                            </p>
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8">
+                                <a href="#dynamicProductsContainer" onclick="filterCategory('all'); return false;" class="bg-olive hover:bg-oliveHover text-white font-bold px-7 py-3.5 rounded-xl text-sm shadow-lg hover:scale-105 active:scale-95 transition-all btn-shine">Explore Products</a>
+                                <a href="#box-builder" class="bg-deepBrown hover:bg-deepBrownDark text-goldenHoney font-bold px-7 py-3.5 rounded-xl text-sm shadow-lg hover:scale-105 active:scale-95 transition-all border border-goldenHoney/40 flex items-center gap-2">
+                                    <i class="fa-solid fa-boxes-packing text-goldenHoney animate-bounceSoft"></i> Gift Box Builder
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="relative mx-auto max-w-md animate-float">
+                                <div class="bg-gradient-to-tr from-goldenHoney via-amber-600 to-amber-800 rounded-3xl p-3 shadow-2xl hover:shadow-goldenHoney/20 transition-shadow">
+                                    <img src="https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=800&q=80" alt="Dry Fruits & Healthy Essentials" class="rounded-2xl w-full h-[340px] sm:h-[400px] object-cover hover:scale-105 transition-transform duration-700">
+                                </div>
+                                <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-4 rounded-2xl border border-goldenHoney/30 shadow-xl flex items-center gap-3 animate-bounceSoft">
+                                    <div class="w-10 h-10 rounded-xl bg-olive/10 text-olive flex items-center justify-center text-xl font-bold">
+                                        <i class="fa-solid fa-award"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-deepBrown dark:text-cream">Premium Quality</p>
+                                        <p class="text-[10px] text-slate-500 dark:text-slate-400">Guaranteed Fresh</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us Section -->
+            <section id="about-us" class="py-16 bg-white dark:bg-slate-900 border-t border-amber-900/10 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-duration="800">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <span class="text-xs font-bold uppercase tracking-widest text-olive bg-olive/10 px-3 py-1 rounded-full"><i class="fa-solid fa-leaf mr-1"></i> About DRYPOPS</span>
+                        <h2 class="text-3xl font-extrabold text-deepBrown dark:text-cream mt-3">Pure, Organic & Ethically Sourced</h2>
+                        <p class="text-darkText/70 dark:text-slate-400 mt-4 text-xs sm:text-sm leading-relaxed">
+                            At DRYPOPS, we specialize in delivering premium quality organic dry fruits, cold-pressed oils, raw honey, and wholesome seeds directly from natural farms to your doorstep across Pakistan.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category Filter Bar -->
+            <div id="categoryFilterBar" class="bg-cream/90 dark:bg-slate-800 border-y border-goldenHoney/20 py-4 shadow-md">
+                <div class="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-2 overflow-x-auto pb-1 sm:pb-0 font-semibold text-xs scrollbar-none">
+                        <button type="button" data-category="all" onclick="filterCategory('all')" class="filter-btn px-4 py-2 rounded-xl whitespace-nowrap transition-all active:scale-95 bg-olive text-white hover:bg-oliveHover">All Items</button>
+                        <button type="button" data-category="Dry Fruits" onclick="filterCategory('Dry Fruits')" class="filter-btn px-4 py-2 rounded-xl whitespace-nowrap transition-all active:scale-95 text-darkText dark:text-cream hover:bg-goldenLight/40 dark:hover:bg-slate-700">Dry Fruits</button>
+                        <button type="button" data-category="Oils" onclick="filterCategory('Oils')" class="filter-btn px-4 py-2 rounded-xl whitespace-nowrap transition-all active:scale-95 text-darkText dark:text-cream hover:bg-goldenLight/40 dark:hover:bg-slate-700">Oils</button>
+                        <button type="button" data-category="Honey" onclick="filterCategory('Honey')" class="filter-btn px-4 py-2 rounded-xl whitespace-nowrap transition-all active:scale-95 text-darkText dark:text-cream hover:bg-goldenLight/40 dark:hover:bg-slate-700">Honey</button>
+                        <button type="button" data-category="Seeds" onclick="filterCategory('Seeds')" class="filter-btn px-4 py-2 rounded-xl whitespace-nowrap transition-all active:scale-95 text-darkText dark:text-cream hover:bg-goldenLight/40 dark:hover:bg-slate-700">Seeds</button>
+                    </div>
+                    <p class="text-xs font-bold text-deepBrown dark:text-goldenHoney flex items-center gap-1.5 bg-goldenHoney/10 px-3 py-1.5 rounded-full border border-goldenHoney/20">
+                        <i class="fa-solid fa-scale-balanced text-goldenHoney"></i> Choose your pack size on every product
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dynamic Product Sections -->
+            <div id="dynamicProductsContainer"></div>
+
+            <!-- Gift Box Builder Section -->
+            <section id="box-builder" class="py-16 bg-cream dark:bg-slate-900 border-t border-goldenHoney/20 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
+                        <span class="text-xs font-bold uppercase tracking-widest text-olive bg-olive/10 px-3 py-1 rounded-full"><i class="fa-solid fa-gift mr-1"></i> Customization</span>
+                        <h2 class="text-3xl font-extrabold text-deepBrown dark:text-cream mt-3">Build Your Own Organic Box</h2>
+                        <p class="text-darkText/70 dark:text-slate-400 mt-2 text-xs sm:text-sm">Select products & custom weight sizes to curate your personalized healthy box!</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8 items-start">
+                        <div id="boxBuilderOptions" class="lg:col-span-2 grid sm:grid-cols-2 gap-4" data-aos="fade-right" data-aos-delay="100">
+                            <!-- Populated Dynamically -->
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border-2 border-goldenHoney shadow-2xl lg:sticky lg:top-36" data-aos="fade-left" data-aos-delay="200">
+                            <h3 class="font-bold text-lg text-deepBrown dark:text-cream mb-4 flex items-center justify-between border-b border-goldenHoney/20 pb-3">
+                                <span>Your Custom Box</span>
+                                <i class="fa-solid fa-boxes-packing text-goldenHoney text-xl animate-bounceSoft"></i>
+                            </h3>
+                            <div id="customBoxList" class="space-y-2 mb-4 text-xs text-darkText dark:text-slate-300 min-h-[100px]">
+                                <p class="text-slate-400 italic text-center py-6">No items added to box yet...</p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between font-extrabold text-sm mb-4">
+                                <span>Box Total:</span>
+                                <span id="customBoxTotal" class="text-goldenHoney font-bold text-base">Rs. 0</span>
+                            </div>
+                            <button onclick="addCustomBoxToCart()" class="w-full bg-olive hover:bg-oliveHover text-white font-bold py-3.5 rounded-xl text-xs shadow-md transition-all hover:scale-105 active:scale-95 btn-shine">
+                                Add Custom Box To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mix Quiz Section -->
+            <section id="quiz" class="py-16 bg-white dark:bg-slate-900 border-t border-goldenHoney/20 overflow-hidden">
+                <div class="max-w-3xl mx-auto px-4 text-center" data-aos="zoom-in" data-aos-duration="800">
+                    <span class="text-xs font-bold uppercase tracking-widest text-olive bg-olive/10 px-3 py-1 rounded-full"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Quick Quiz</span>
+                    <h2 class="text-3xl font-extrabold text-deepBrown dark:text-cream mt-3">Find Your Perfect Mix</h2>
+                    <p class="text-darkText/70 dark:text-slate-400 text-xs sm:text-sm mt-2">Select your health goal to get an instant tailored item suggestion.</p>
+
+                    <div class="mt-8 bg-cream dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-goldenHoney/30 shadow-lg hover:shadow-xl transition-shadow">
+                        <h3 class="font-bold text-sm text-deepBrown dark:text-cream mb-6">What is your daily goal?</h3>
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <button onclick="showQuizResult('Energy & Muscle', 'Jumbo Cashews (200g) + Almond Oil (100ml)')" class="p-5 rounded-2xl bg-white dark:bg-slate-700 hover:border-goldenHoney border border-goldenHoney/20 text-xs font-bold text-deepBrown dark:text-goldenLight transition-all hover:-translate-y-1 hover:shadow-md group">
+                                <i class="fa-solid fa-bolt text-3xl text-goldenHoney block mb-3 group-hover:scale-125 transition-transform"></i> Energy & Fitness
+                            </button>
+                            <button onclick="showQuizResult('Immunity & Defense', 'Pure Sidr Honey (200g) + Chia Seeds (100g)')" class="p-5 rounded-2xl bg-white dark:bg-slate-700 hover:border-goldenHoney border border-goldenHoney/20 text-xs font-bold text-deepBrown dark:text-goldenLight transition-all hover:-translate-y-1 hover:shadow-md group">
+                                <i class="fa-solid fa-shield-halved text-3xl text-goldenHoney block mb-3 group-hover:scale-125 transition-transform"></i> Immunity Boost
+                            </button>
+                            <button onclick="showQuizResult('Brain Power & Focus', 'Organic Almonds (200g) + Pumpkin Seeds (100g)')" class="p-5 rounded-2xl bg-white dark:bg-slate-700 hover:border-goldenHoney border border-goldenHoney/20 text-xs font-bold text-deepBrown dark:text-goldenLight transition-all hover:-translate-y-1 hover:shadow-md group">
+                                <i class="fa-solid fa-brain text-3xl text-goldenHoney block mb-3 group-hover:scale-125 transition-transform"></i> Brain & Memory
+                            </button>
+                        </div>
+                        <div id="quizResult" class="hidden mt-6 p-4 bg-white dark:bg-slate-900 rounded-2xl text-xs font-bold text-deepBrown dark:text-goldenLight border border-goldenHoney/30 shadow-inner animate-fadeInUp"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRODUCT DETAILS PAGE -->
+        <div id="view-product-detail" class="page-view hidden py-12 bg-cream dark:bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showView('home')" class="mb-6 inline-flex items-center gap-2 text-xs font-bold text-olive hover:underline hover:-translate-x-1 transition-transform">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Products
+                </button>
+                <div class="grid lg:grid-cols-2 gap-12 items-start" id="productDetailContainer">
+                    <!-- Dynamic Details -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKOUT PAGE -->
+        <div id="view-checkout" class="page-view hidden py-12 bg-cream dark:bg-slate-950">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-extrabold text-deepBrown dark:text-cream mb-8 flex items-center gap-3">
+                    <i class="fa-solid fa-credit-card text-goldenHoney"></i> Checkout
+                </h1>
+
+                <form onsubmit="handleCheckoutSubmit(event)" class="grid lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-goldenHoney/30 shadow-md">
+                            <h3 class="font-bold text-base text-deepBrown dark:text-cream mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-olive text-white text-xs flex items-center justify-center">1</span> Shipping Details
+                            </h3>
+                            <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                                <div>
+                                    <label class="block font-semibold mb-1">Full Name *</label>
+                                    <input type="text" id="coName" required class="w-full bg-cream dark:bg-slate-700 p-3 rounded-xl border border-goldenHoney/30 focus:outline-none focus:border-goldenHoney transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-1">Phone Number (WhatsApp) *</label>
+                                    <input type="tel" id="coPhone" required placeholder="03XX-XXXXXXX" inputmode="tel" autocomplete="tel" class="w-full bg-cream dark:bg-slate-700 p-3 rounded-xl border border-goldenHoney/30 focus:outline-none focus:border-goldenHoney transition-colors">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="block font-semibold mb-1">Street Address *</label>
+                                    <input type="text" id="coAddress" required placeholder="House/Flat No, Street, Area" class="w-full bg-cream dark:bg-slate-700 p-3 rounded-xl border border-goldenHoney/30 focus:outline-none focus:border-goldenHoney transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-1">City *</label>
+                                    <input type="text" id="coCity" required placeholder="Karachi, Lahore, Islamabad..." class="w-full bg-cream dark:bg-slate-700 p-3 rounded-xl border border-goldenHoney/30 focus:outline-none focus:border-goldenHoney transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-1">Email Address</label>
+                                    <input type="email" id="coEmail" placeholder="name@gmail.com" class="w-full bg-cream dark:bg-slate-700 p-3 rounded-xl border border-goldenHoney/30 focus:outline-none focus:border-goldenHoney transition-colors">
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <!-- Step 2: Payment Method -->
+                        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-goldenHoney/30 shadow-md">
+                            <h3 class="font-bold text-base text-deepBrown dark:text-cream mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-full bg-olive text-white text-xs flex items-center justify-center">2</span> Payment Method
+                            </h3>
+
+                            <div class="space-y-3">
+                                <label class="flex items-center justify-between p-4 rounded-2xl border border-goldenHoney/30 bg-cream dark:bg-slate-700/50 cursor-pointer hover:border-goldenHoney transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="paymentMethod" value="COD" checked onchange="togglePaymentFields('COD')" class="accent-olive">
+                                        <span class="font-bold text-xs">Cash on Delivery (COD)</span>
+                                    </div>
+                                    <i class="fa-solid fa-hand-holding-dollar text-goldenHoney text-lg"></i>
+                                </label>
+
+                                <label class="flex items-center justify-between p-4 rounded-2xl border border-goldenHoney/30 bg-cream dark:bg-slate-700/50 cursor-pointer hover:border-goldenHoney transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="paymentMethod" value="WALLET" onchange="togglePaymentFields('WALLET')" class="accent-olive">
+                                        <span class="font-bold text-xs">JazzCash / Easypaisa</span>
+                                    </div>
+                                    <i class="fa-solid fa-mobile-screen-button text-goldenHoney text-lg"></i>
+                                </label>
+
+                                <p id="walletNote" class="hidden p-4 rounded-2xl bg-goldenLight/20 dark:bg-slate-900 border border-goldenHoney/40 text-xs leading-relaxed">
+                                    After you place your order, we will message you on WhatsApp with our JazzCash / Easypaisa account details. Your order is confirmed once the payment is received.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Column -->
+                    <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-goldenHoney/30 shadow-xl h-fit lg:sticky lg:top-36">
+                        <h3 class="font-bold text-lg text-deepBrown dark:text-cream mb-4 border-b border-slate-100 dark:border-slate-700 pb-3">Order Summary</h3>
+                        <div id="checkoutItemsList" class="space-y-3 mb-4 text-xs divide-y divide-slate-100 dark:divide-slate-700 max-h-60 overflow-y-auto"></div>
+                        <div class="space-y-2 text-xs pt-3 border-t border-slate-100 dark:border-slate-700">
+                            <div class="flex justify-between"><span>Subtotal</span><span id="coSubtotal">Rs. 0</span></div>
+                            <div class="flex justify-between"><span>Discount</span><span id="coDiscount" class="text-olive font-bold">- Rs. 0</span></div>
+                            <div class="flex justify-between"><span>Shipping Fee</span><span id="coShipping" class="text-olive font-bold">FREE</span></div>
+                            <div class="flex justify-between font-extrabold text-sm text-deepBrown dark:text-goldenHoney pt-2 border-t">
+                                <span>Grand Total</span>
+                                <span id="coTotal">Rs. 0</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full mt-6 bg-olive hover:bg-oliveHover text-white font-bold py-3.5 rounded-xl text-xs shadow-lg transition-all hover:scale-105 active:scale-95 btn-shine">
+                            Place Order Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ORDER CONFIRMATION PAGE -->
+        <div id="view-order-success" class="page-view hidden py-16 bg-white dark:bg-slate-900 text-center">
+            <div class="max-w-xl mx-auto px-4" data-aos="zoom-in">
+                <div class="w-20 h-20 bg-goldenLight/50 text-goldenHoney rounded-full flex items-center justify-center text-4xl mx-auto mb-6 animate-bounceSoft shadow-inner">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h1 class="text-3xl font-extrabold text-deepBrown dark:text-cream">Order Received!</h1>
+                <p class="text-xs text-darkText/70 dark:text-slate-400 mt-2 leading-relaxed">Thank you for shopping with DryPops. Tap the button below to send your order to us on WhatsApp so we can confirm and dispatch it.</p>
+
+                <div id="orderSuccessSummary" class="my-6 p-6 bg-cream dark:bg-slate-800 rounded-2xl border border-goldenHoney/30 text-left text-xs space-y-2 shadow-sm"></div>
+
+                <a id="orderWhatsAppBtn" href="#" target="_blank" rel="noopener" class="flex w-fit mx-auto mb-3 items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl text-xs shadow-lg transition-all active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Send Order on WhatsApp
+                </a>
+
+                <button onclick="showView('home')" class="bg-olive hover:bg-oliveHover text-white font-bold px-8 py-3.5 rounded-xl text-xs shadow-lg transition-all hover:scale-105 active:scale-95 btn-shine">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer (Deep Brown) -->
+    <footer id="contact-us" class="bg-deepBrown text-cream mt-auto pt-16 pb-8 border-t-4 border-goldenHoney">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 pb-10 border-b border-deepBrownDark">
+                <div>
+                    <h3 class="text-2xl font-black text-goldenHoney mb-3 tracking-wider">DRYPOPS</h3>
+                    <p class="text-xs text-cream/80 leading-relaxed">Providing high quality organic dry fruits, oils, honey, and seeds with custom weight choices straight to your doorstep across Pakistan.</p>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <h4 class="font-bold text-goldenHoney text-sm mb-3">Contact Us</h4>
+                    <p class="flex items-center">
+                        <i class="fa-solid fa-phone text-goldenHoney mr-3 w-4 text-center"></i> <strong>Phone:</strong> 
+                        <a href="tel:03282288801" class="hover:underline hover:text-goldenHoney transition-colors ml-1">03282288801</a>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fa-brands fa-whatsapp text-goldenHoney mr-3 w-4 text-center text-sm"></i> <strong>WhatsApp:</strong> 
+                        <a href="https://wa.me/923282288801?text=Hi%20DryPops!" target="_blank" rel="noopener" class="hover:underline hover:text-goldenHoney transition-colors ml-1">03282288801</a>
+                    </p>
+                    <p class="flex items-center">
+                        <i class="fa-solid fa-envelope text-goldenHoney mr-3 w-4 text-center"></i> <strong>Email:</strong> 
+                        <a href="mailto:drypops@gmail.com" class="hover:underline hover:text-goldenHoney transition-colors ml-1">drypops@gmail.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-goldenHoney text-sm mb-3">Get Offers on WhatsApp</h4>
+                    <p class="text-xs text-cream/80 mb-3">Enter your email and send us a quick WhatsApp message to join our offers list.</p>
+                    <form onsubmit="subscribeEmail(event)" class="flex gap-2">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email address" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-darkText focus:outline-none">
+                        <button type="submit" class="bg-olive hover:bg-oliveHover text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all hover:scale-105 active:scale-95 btn-shine">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center flex flex-col items-center justify-center space-y-4">
+                <p class="text-xs text-cream/70">&copy; 2026 DRYPOPS. All rights reserved.</p>
+                <div class="inline-block bg-deepBrownDark border border-goldenHoney/40 px-6 py-2.5 rounded-full shadow-md hover:border-goldenHoney transition-colors">
+                    <p class="text-xs sm:text-sm font-extrabold tracking-widest text-goldenHoney uppercase">MADE BY MUHAMMAD KHIZER BAIG</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Side Floating WhatsApp Button -->
+    <a href="https://wa.me/923282288801?text=Hi%20DryPops!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-20 right-6 z-40 bg-emerald-600 hover:bg-emerald-700 text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-115 animate-bounceSoft" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Floating Button -->
+    <a href="#" aria-label="Back to top" class="fixed bottom-6 right-6 z-40 bg-goldenHoney text-deepBrown font-bold w-12 h-12 rounded-full shadow-2xl hover:bg-amber-400 transition-all flex items-center justify-center hover:scale-110 active:scale-95">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- MODALS -->
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-start justify-center pt-20 px-4 transition-opacity">
+        <div id="searchModalBox" class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-3xl p-6 shadow-2xl relative border border-goldenHoney/30 modal-animated modal-hidden">
+            <button onclick="toggleSearchModal()" aria-label="Close search" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-bold text-deepBrown dark:text-cream text-sm mb-3 flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-goldenHoney"></i> Search Products</h3>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" aria-label="Search products" placeholder="Search almonds, honey, oils, seeds..." class="w-full bg-cream dark:bg-slate-700 border border-goldenHoney/30 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-goldenHoney transition-colors">
+            <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-700 text-xs"></div>
+        </div>
+    </div>
+
+    <!-- Slide Cart Sidebar -->
+    <div id="cartSidebar" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div id="cartDrawer" class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl flex flex-col drawer-slide drawer-closed">
+                <div class="p-5 bg-deepBrown text-cream flex items-center justify-between border-b border-goldenHoney/30">
+                    <h3 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-goldenHoney"></i> Your Cart</h3>
+                    <button onclick="toggleCart()" aria-label="Close cart" class="text-goldenHoney hover:text-white text-xl transition-colors"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+                <div class="p-5 border-t border-slate-200 dark:border-slate-800 bg-cream/60 dark:bg-slate-800 space-y-3">
+                    <div class="flex justify-between text-base font-extrabold text-deepBrown dark:text-goldenHoney">
+                        <span>Total Amount:</span>
+                        <span id="cartTotal">Rs. 0</span>
+                    </div>
+                    <button onclick="proceedToCheckout()" class="w-full bg-olive hover:bg-oliveHover text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-md text-sm transition-all hover:scale-105 active:scale-95 btn-shine">
+                        Proceed To Checkout <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button onclick="checkoutViaWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 text-xs transition-all hover:scale-105 active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-base"></i> Quick Checkout via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 bg-deepBrown text-goldenLight px-6 py-3.5 rounded-2xl shadow-2xl border border-goldenHoney text-xs font-semibold hidden flex items-center gap-2.5 animate-fadeInUp">
+        <i class="fa-solid fa-circle-check text-goldenHoney text-base"></i> <span id="toastMsg">Notification</span>
+    </div>
+
+    <!-- AOS Script JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- External Custom JS File -->
+    <script src="orders-sync.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

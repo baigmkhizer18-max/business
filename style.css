@@ -1,0 +1,122 @@
+/* ---------- Base ---------- */
+html {
+    /* keeps anchor / scrollIntoView targets clear of the sticky header */
+    scroll-padding-top: 150px;
+}
+body {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Hide scrollbars on horizontally scrolling rows (category chips, sub-nav) */
+.scrollbar-none {
+    scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
+/* ---------- Hover lift & card zoom ---------- */
+.interactive-card {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+.interactive-card:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 20px 30px -10px rgba(44, 24, 16, 0.15);
+}
+
+/* ---------- Button shine ---------- */
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+.btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+}
+.btn-shine:hover::after {
+    opacity: 1;
+    animation: btnShine 0.9s ease-out;
+}
+@keyframes btnShine {
+    from { left: -75%; }
+    to   { left: 125%; }
+}
+
+/* ---------- Pulse badge ----------
+   Keyframes live here (not only in the Tailwind config) because the
+   Tailwind CDN only generates keyframes for animation classes used in the HTML. */
+.pulse-badge {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+    50%      { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+}
+
+/* ---------- Wishlist heart (active state) ---------- */
+.wish-btn:hover,
+.wish-btn.wish-active {
+    color: #ef4444 !important;
+}
+
+/* ---------- Modal scale transition ---------- */
+.modal-animated {
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-hidden {
+    opacity: 0;
+    transform: scale(0.92) translateY(-10px);
+    pointer-events: none;
+}
+.modal-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+/* ---------- Drawer transition ---------- */
+.drawer-slide {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-closed {
+    transform: translateX(100%);
+}
+.drawer-open {
+    transform: translateX(0);
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #FAF6F0;
+}
+.dark ::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #556B2F;
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
